@@ -158,5 +158,5 @@ Navigate to `http://localhost:5173` in your browser.
 <div align="center">
   <br/>
   <p><i>Building the standard for cryptographic academic integrity.</i></p>
-  <p><b>Created with ❤️ by Mihir Mehta</b></p>
+  <p><b>Created with ❤️ by Mihir Mehta & Team </b></p>
 </div>
