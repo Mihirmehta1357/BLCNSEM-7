@@ -1,12 +1,13 @@
 <div align="center">
   <img src="https://img.icons8.com/color/144/000000/blockchain-technology.png" alt="EduChain Logo" width="120" />
   <h1>🎓 EduChain: The Architecture of Trust</h1>
-  <p><strong>Premium, Blockchain-Based Academic Credential Platform</strong></p>
+  <p><strong>A Highly Optimized, Premium Blockchain Academic Credential Platform</strong></p>
 
   <p>
     <a href="https://github.com/Mihirmehta1357/BLCNSEM-7"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge" alt="License" /></a>
     <img src="https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=Ethereum&logoColor=white" alt="Ethereum" />
-    <img src="https://img.shields.io/badge/Solidity-%23363636.svg?style=for-the-badge&logo=solidity&logoColor=white" alt="Solidity" />
+    <img src="https://img.shields.io/badge/Solidity-363636?style=for-the-badge&logo=solidity&logoColor=white" alt="Solidity" />
+    <img src="https://img.shields.io/badge/Hardhat-FFF100?style=for-the-badge&logo=hardhat&logoColor=black" alt="Hardhat" />
     <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite" />
   </p>
 </div>
@@ -15,118 +16,147 @@
 
 ## 🌟 Introduction
 
-Welcome to **EduChain**! EduChain revolutionizes how academic credentials are issued, verified, and presented. By replacing easily forged paper and PDF certificates with **undeniable cryptographic truth**, EduChain ensures absolute data integrity using the Ethereum blockchain.
+Welcome to **EduChain**, a state-of-the-art decentralized application (dApp) designed to revolutionize the way academic institutions issue, manage, and verify credentials.
 
-Instead of storing heavy data like images on-chain—which is prohibitively expensive—EduChain operates purely on **cryptographic hashes** and **Merkle Trees**. 
-
-## ✨ Key Features
-
-- **🛡️ Cryptographic Integrity:** Uses SHA-256 to hash credential data (ID, Name, Course, Institution) into a deterministic fingerprint.
-- **⚡ Bulk Issuance via Merkle Trees:** Issue 1,000+ certificates for the exact same gas cost as issuing a single certificate by utilizing highly optimized Merkle Tree verification.
-- **🔗 Seamless Wallet Integration:** Native MetaMask integration with auto-network switching to local Ganache instances.
-- **🎨 Premium UI/UX:** Built from the ground up using vanilla CSS featuring glassmorphism, dynamic depths, and a custom-built interactive Merkle Tree visualizer.
-- **🕵️ Verifier Portal:** Third parties can cryptographically verify credentials manually or via automated JSON Merkle proofs.
+By replacing traditional, easily-forged paper and PDF certificates with **undeniable cryptographic truth**, EduChain ensures absolute data integrity. Instead of storing expensive metadata (like images) on the blockchain, EduChain operates purely on **cryptographic hashes** and **Merkle Trees**, bridging the gap between Web2 efficiency and Web3 trust.
 
 ---
 
-## 🏗️ High-Level Architecture
+## ✨ Core Features & Technical Highlights
 
-The project is cleanly separated into two distinct layers:
+- **🛡️ Cryptographic Integrity:** Combines `ID + Name + Course + Institution` into a single string and hashes it via `SHA-256` on the client side. The smart contract validates this against an on-chain record using `keccak256`.
+- **🌳 Optimized Bulk Issuance (Merkle Trees):** Issue 10,000+ certificates for the *exact same gas cost* as issuing a single certificate by computing the Merkle Root off-chain and storing only the `bytes32` root on-chain.
+- **🔗 Seamless Web3 Integration:** Native MetaMask connection handling. Automatically provisions and switches the user to the local Ganache network (Chain ID: 31337) if not found.
+- **🎨 Premium UI/UX (Zero Frameworks):** A completely bespoke interface built with Vanilla CSS. Features dynamic glassmorphism, contextual depth (`box-shadow`), and an interactive SVG Merkle visualizer that renders live in the DOM.
+- **🕵️ Automated Verifier Portal:** Third parties can verify individual hashes manually or upload a `batch_proofs.json` file for automated, mathematical proof-of-inclusion against the blockchain.
 
-### 1. Backend (Blockchain Layer)
-- **Smart Contract:** `CertificateRegistry.sol` (Solidity `^0.8.20`)
-- **Framework:** Hardhat 
-- **Local Network:** Ganache (`http://127.0.0.1:8545` | Chain ID: 31337)
-- **Libraries:** OpenZeppelin `MerkleProof`
+---
 
-### 2. Frontend (Application Layer)
-- **Tech Stack:** Vanilla JS, HTML, CSS, Vite
-- **Blockchain Interface:** `ethers.js` (v6)
-- **Cryptography:** Web Crypto API (`crypto.subtle`) & `merkletreejs`
+## 🏗️ System Architecture
+
+The ecosystem is cleanly decoupled into two distinct layers to maximize security and performance.
+
+### 1. The Blockchain Layer (Backend)
+Built on the **Hardhat** framework, deployed locally to **Ganache** (`http://127.0.0.1:8545`). 
+The single source of truth is the `CertificateRegistry.sol` contract (Solidity `^0.8.20`).
+
+### 2. The Application Layer (Frontend)
+A modern Single Page Application (SPA) built with **Vanilla JS, HTML, CSS, and Vite**. It utilizes `ethers.js` (v6) for RPC calls and the native Web Crypto API (`crypto.subtle`) combined with `merkletreejs` for heavy cryptographic lifting.
 
 ```mermaid
 graph TD;
-    A[Institution / Admin] -->|Fills Data or CSV| B(Frontend / Vite);
-    B -->|Hashes Data / Builds Merkle Tree| B;
-    B -->|ethers.js RPC Call| C[MetaMask];
-    C -->|Submits Transaction| D[(Ganache Local Blockchain)];
-    D -->|Validates & Stores Hash/Root| E[CertificateRegistry.sol];
+    subgraph Frontend [Application Layer - Vite & Ethers.js]
+        A[Institution Admin] -->|Uploads CSV of Students| B(CSV Parser & Hasher);
+        B -->|Computes SHA-256 Leaves| C(MerkleTree.js);
+        C -->|Generates Root & Proofs| D[batch_proofs.json];
+    end
     
-    F[Student] -->|Inputs ID| B;
-    B -->|Reads Data| D;
-    B -->|Generates UI & QR Code| F;
+    subgraph Web3 [Wallet Provider]
+        C -->|RPC Call: registerBatchRoot| E[MetaMask];
+    end
     
-    G[Verifier] -->|Scans QR / Uploads JSON| B;
-    B -->|Verifies Hash/Proof| D;
-    D -->|Returns boolean| B;
-    B -->|Success/Failure UI| G;
+    subgraph Backend [Blockchain Layer - Ganache]
+        E -->|Transaction| F[(CertificateRegistry.sol)];
+        F -->|Stores bytes32 Root| G[Ethereum State];
+    end
+    
+    subgraph Verification [Verifier Portal]
+        H[Third Party Verifier] -->|Uploads JSON| I(Frontend Verification Engine);
+        I -->|Reads Root from Chain| F;
+        I -->|OpenZeppelin MerkleProof.verify| I;
+        I -->|Success UI| H;
+    end
 ```
 
 ---
 
-## 🚀 Getting Started
+## 📜 Smart Contract Deep Dive: `CertificateRegistry.sol`
+
+The smart contract acts as the immutable registry. It implements strict access control (`onlyAdmin`) to ensure only the deployer can issue or revoke credentials.
+
+### Key State Variables
+- `mapping(string => Certificate) private certificates;` - Stores individual certificate metadata.
+- `mapping(string => bytes32) public batchRoots;` - Maps a unique `Batch ID` to its Cryptographic `Merkle Root`.
+
+### Core Functions
+
+| Function Name | Visibility | Purpose | Mechanism |
+|--------------|-----------|---------|-----------|
+| `issueCertificate()` | `public onlyAdmin` | Single Issuance | Maps the `ID` to the `Certificate` struct containing the `certificateHash`. Marks `valid = true`. |
+| `revokeCertificate()` | `public onlyAdmin` | Revocation | Flips the `valid` boolean to `false`. Future verifications immediately fail. |
+| `batchIssueCertificates()`| `public onlyAdmin` | Standard Bulk Issue | Loops through arrays of data to store multiple structs. **(High Gas Cost)** |
+| `registerBatchRoot()` | `public onlyAdmin` | **Optimized Bulk Issue** | Takes a `_batchId` and a single `bytes32 _merkleRoot`. **(Extremely Low Gas Cost)** |
+| `verifyCertificate()` | `public view` | Standard Verify | Hashes the provided `_hash` via `keccak256` and compares it to the stored hash. |
+| `verifyMerkleCertificate()`| `public view` | **Merkle Verify** | Uses OpenZeppelin's `MerkleProof.verify` to check if a provided leaf and proof mathematically resolve to the on-chain Root. |
+
+---
+
+## ⛽ The Gas Optimization Masterclass
+
+Why use Merkle Trees? Storing data on Ethereum is incredibly expensive.
+
+If an institution wants to graduate 1,000 students:
+1. **Standard `batchIssueCertificates`:** The contract loops 1,000 times, performing 1,000 `SSTORE` operations. This costs massive amounts of gas and may hit the block gas limit, causing the transaction to revert.
+2. **Optimized `registerBatchRoot` (Merkle):** The frontend hashes all 1,000 students into a Merkle Tree and extracts ONE root hash. The contract performs exactly ONE `SSTORE` operation. 
+
+**Cost comparison:**
+- Standard Batch (1000 certs): ~`25,000,000 Gas`
+- Merkle Root (1000 certs): ~`45,000 Gas` (A **99.8% reduction** in fees).
+
+---
+
+## 🚀 Local Development & Setup
+
+Follow these exact steps to spin up the entire architecture on your local machine.
 
 ### Prerequisites
-
 - [Node.js](https://nodejs.org/) (v16+)
-- [Ganache](https://trufflesuite.com/ganache/)
-- [MetaMask](https://metamask.io/) Extension
+- [Ganache](https://trufflesuite.com/ganache/) (Running on Port 8545)
+- [MetaMask](https://metamask.io/) browser extension
 
-### 1. Setting Up the Blockchain (Backend)
-
-Open a terminal and navigate to the `backend` folder:
-
+### Step 1: Deploy the Smart Contract
+Open a terminal and navigate to the backend directory:
 ```bash
 cd backend
 npm install
 ```
-
-Start your local Ganache instance on `http://127.0.0.1:8545` (Chain ID 31337). Then deploy the smart contract:
-
+Compile and deploy the contract to your local Ganache network:
 ```bash
+npx hardhat compile
 npx hardhat run scripts/deploy.js --network localhost
 ```
-*(Copy the deployed contract address and update it in your frontend if necessary!)*
+*Note: Copy the resulting contract address. You may need to update it in `frontend/src/main.js` if it differs.*
 
-### 2. Starting the Frontend
-
-Open a new terminal and navigate to the `frontend` folder:
-
+### Step 2: Start the Frontend Application
+Open a second terminal window and navigate to the frontend directory:
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-Visit `http://localhost:5173` in your browser. 
+Navigate to `http://localhost:5173` in your browser. 
+
+### Step 3: Configure MetaMask
+1. Open MetaMask and click "Add Network".
+2. Add Ganache manually:
+   - **Network Name:** Local Ganache
+   - **New RPC URL:** `http://127.0.0.1:8545`
+   - **Chain ID:** `31337` (or `1337` depending on your Ganache settings)
+   - **Currency Symbol:** `ETH`
+3. Import the first private key from Ganache into MetaMask to act as the `Admin`.
 
 ---
 
-## 🛠️ Deep Dive: The Workflows
+## 🎨 The User Experience
 
-### 🏛️ The Admin Workflow
-- **Single Issuance:** Automatically combines `ID + Name + Course + Institution`, hashes it via SHA-256, and submits the hash to the contract.
-- **Batch Issuance:** Upload a `.csv` file. The frontend calculates all hashes, constructs a Merkle Tree, and registers only the *Root* on-chain. It automatically downloads a `batch_proofs.json` containing the cryptographic proofs for distribution.
-- **Revocation:** Admin can instantly revoke a certificate by its ID, preventing future verifications.
-
-### 🎓 The Student Workflow
-- A student enters their unique `Certificate ID`. The app fetches the on-chain status and generates a beautifully styled certificate UI on the fly, complete with a scannable Verification QR Code.
-
-### 🔍 The Verifier Workflow
-Three ways to verify:
-1. **Single Verify:** Input the Certificate ID and its Cryptographic Hash.
-2. **Batch Merkle Verify:** Manually input the Batch ID, Leaf Hash, and Proof Array.
-3. **Auto JSON Verify:** Upload the `batch_proofs.json` and enter the ID. The DApp handles parsing, extracting the exact proof, and interacting with the blockchain automatically.
-
----
-
-## 🎨 UI & Aesthetics
-
-EduChain does not rely on generic CSS frameworks. The interface uses bespoke styling to achieve a **"wow" aesthetic**:
-- **Glassmorphism & Depth:** Soft borders, dynamic shadowing, layered frosted-glass backgrounds.
-- **Interactive Visualizations:** An interactive SVG Merkle Tree drawn live in the DOM that teaches users how cryptographic proofs trace up to the Root.
+1. **Admin Console:** Provides a sleek interface for manual data entry or drag-and-drop CSV uploads. Generating a batch automatically triggers a download of `batch_proofs.json`.
+2. **Student Portal:** Students enter their ID to generate a dynamic, beautifully styled UI Certificate. A QR code is rendered on the fly, embedding their ID and Hash for easy scanning.
+3. **Verifier Portal:** Designed for absolute frictionless verification. Upload the `batch_proofs.json`, type the ID, and the engine handles the cryptographic proofs against the blockchain in milliseconds, displaying a "Spectacular Success" animation upon validation.
 
 ---
 
 <div align="center">
-  <p>Built with ❤️ for a decentralized future.</p>
+  <br/>
+  <p><i>Building the standard for cryptographic academic integrity.</i></p>
+  <p><b>Created with ❤️ by Mihir Mehta</b></p>
 </div>
