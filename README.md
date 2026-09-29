@@ -147,6 +147,63 @@ Navigate to `http://localhost:5173` in your browser.
 
 ---
 
+## 📂 Project Directory Structure
+
+```text
+blockchain/
+├── backend/
+│   ├── contracts/
+│   │   └── CertificateRegistry.sol  # Core Smart Contract
+│   ├── scripts/
+│   │   └── deploy.js                # Deployment Script
+│   └── hardhat.config.js            # Hardhat Network Configuration
+├── frontend/
+│   ├── public/                      # Static Assets (Favicon, SVGs)
+│   ├── src/
+│   │   ├── main.js                  # DApp Logic, Ethers.js, Web Crypto API
+│   │   └── style.css                # Premium Glassmorphism UI Styling
+│   ├── index.html                   # Web Application Entry Point
+│   └── vite.config.js               # Vite Bundler Configuration
+└── README.md
+```
+
+---
+
+## 🧪 Testing Instructions
+
+To ensure the smart contract operates perfectly (covering single issuance, revocation, and cryptographic Merkle verification), you can run the Hardhat test suite:
+
+```bash
+cd backend
+npx hardhat test
+```
+
+---
+
+## 🗺️ Future Roadmap
+
+- **IPFS Integration:** Store extended credential metadata (like heavy PDF transcripts) on the InterPlanetary File System.
+- **Polygon / Arbitrum Deployment:** Migrate from the local Ganache network to a Layer-2 scaling solution for ultra-low gas fees on a live public mainnet.
+- **Soulbound Tokens (SBTs):** Upgrade the architecture so certificates are minted as non-transferable NFTs, bound permanently to the student's wallet address.
+
+---
+
+## 🤝 Contributing Guidelines & License
+
+### Contributing
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+### License
+Distributed under the **MIT License**. See `LICENSE` for more information.
+
+---
+
 ## 🎨 The User Experience
 
 1. **Admin Console:** Provides a sleek interface for manual data entry or drag-and-drop CSV uploads. Generating a batch automatically triggers a download of `batch_proofs.json`.
