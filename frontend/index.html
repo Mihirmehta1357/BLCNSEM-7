@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduChain - Premium Credential Platform</title>
+  </head>
+  <body>
+    <!-- GLOBAL TOPBAR (V3.1) -->
+    <header class="persona-topbar">
+      <div class="topbar-left">
+        <h2 id="nav-brand">EDUCHAIN</h2>
+        <nav class="global-nav">
+          <button id="nav-btn-home" class="active-nav">Home</button>
+          <button id="nav-btn-admin">Admin</button>
+          <button id="nav-btn-student">Student</button>
+          <button id="nav-btn-verifier">Verifier</button>
+        </nav>
+      </div>
+      <button id="connect-btn" class="wallet-btn">Connect Wallet</button>
+    </header>
+
+    <!-- ==============================================
+         VIEW: LANDING PAGE
+    =============================================== -->
+    <main id="view-landing" class="fade-in">
+      
+      <!-- 1. HERO -->
+      <section class="landing-section" style="padding-top: 12rem;">
+        <div class="hero-split">
+          <div class="hero-text">
+            <h1>ACADEMIC<br>CREDENTIALS,<br>BUILT FOR<br>VERIFICATION.</h1>
+            <p>Issue, present and verify academic credentials with cryptographic proof directly on-chain.</p>
+          </div>
+          
+          <div class="hero-visual">
+            <!-- The Beautiful Credential (Foreground) -->
+            <div class="premium-credential">
+              <div class="cred-brand-header">
+                <h4>EDUCHAIN</h4>
+                <span>Verified Academic Credential</span>
+              </div>
+              <div class="cred-body">
+                <h1 style="font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; font-weight: 700;">JOHN DOE</h1>
+                <p style="font-size: 1.1rem; color: #333; font-weight: 500;">B.Sc. Computer Science</p>
+                <p style="font-size: 1rem; color: #666; margin-top: 0.25rem;">EduChain University</p>
+              </div>
+              <div class="cred-footer">
+                <div class="cred-id">CERT-2026-001</div>
+                <div class="cred-verified-badge">✓ VERIFIED</div>
+              </div>
+            </div>
+
+            <!-- Cryptographic Layer (Background/Secondary) -->
+            <div class="crypto-layer">
+              <div style="font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">BLOCKCHAIN PROOF</div>
+              
+              <div style="margin-top: 1rem; font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase;">HASH</div>
+              <div class="mono" style="font-size: 1rem; margin-bottom: 1rem; color: white;">0x8a91...4c2e</div>
+              
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase;">CONTRACT</div>
+              <div class="mono" style="font-size: 0.85rem; margin-bottom: 1rem;">0x5Fb...aA3</div>
+              
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase;">CHAIN</div>
+              <div class="mono" style="font-size: 0.85rem;">31337</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. HOW IT WORKS -->
+      <section class="landing-section bg-blue">
+        <h2 style="text-align: center; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem;">THE ARCHITECTURE OF TRUST</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 4rem; color: rgba(255,255,255,0.8);">EduChain replaces paper and PDFs with undeniable cryptographic truth.</p>
+        
+        <div style="max-width: 1200px; margin: 0 auto; width: 100%;">
+          <h3 style="margin-bottom: 2rem; color: white;">SINGLE ISSUANCE</h3>
+          <div style="display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(255,255,255,0.2); padding: 2rem; border-radius: 12px; margin-bottom: 4rem;">
+            <div style="text-align: center;"><div style="font-weight: 700; margin-bottom: 0.5rem;">CREDENTIAL DATA</div><div style="font-size: 0.8rem; opacity: 0.7;">JSON / Form</div></div>
+            <div class="mono" style="opacity: 0.5;">→</div>
+            <div style="text-align: center;"><div style="font-weight: 700; margin-bottom: 0.5rem;">CRYPTOGRAPHIC HASH</div><div style="font-size: 0.8rem; opacity: 0.7;">SHA-256</div></div>
+            <div class="mono" style="opacity: 0.5;">→</div>
+            <div style="text-align: center;"><div style="font-weight: 700; margin-bottom: 0.5rem;">SMART CONTRACT</div><div style="font-size: 0.8rem; opacity: 0.7;">EduChain Registry</div></div>
+            <div class="mono" style="opacity: 0.5;">→</div>
+            <div style="text-align: center;"><div style="font-weight: 700; margin-bottom: 0.5rem;">BLOCKCHAIN RECORD</div><div style="font-size: 0.8rem; opacity: 0.7;">Immutable Truth</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. PERSONAS (GATEWAYS) -->
+      <section class="landing-section bg-light" style="padding-top: 10rem; padding-bottom: 10rem;">
+        <div class="persona-gateways">
+          
+          <!-- ADMIN -->
+          <div class="gateway-panel cursor-pointer" id="enter-admin" style="background: var(--bg-dark); color: white; cursor: pointer;">
+            <div>
+              <div style="font-weight: 800; font-size: 1rem; letter-spacing: 0.1em; color: var(--accent-blue); margin-bottom: 1rem;">ADMIN</div>
+              <h2 style="color: white;">ISSUE & MANAGE</h2>
+              <p style="color: var(--text-secondary-dark); margin-bottom: 2rem;">Create and manage blockchain-backed academic credentials directly via the Smart Contract console.</p>
+              <div style="font-weight: 600; color: white;">ENTER CONSOLE →</div>
+            </div>
+            <div class="gateway-visual" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);">
+              <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                <div style="background: rgba(255,255,255,0.1); height: 8px; width: 40%; border-radius: 4px;"></div>
+                <div style="background: rgba(255,255,255,0.1); height: 8px; width: 70%; border-radius: 4px;"></div>
+                <div style="background: rgba(255,255,255,0.1); height: 8px; width: 50%; border-radius: 4px;"></div>
+                <div style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; text-align: center;" class="mono">TX: 0x...PENDING</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STUDENT (V3.1 Product Imagery) -->
+          <div class="gateway-panel cursor-pointer" id="enter-student" style="background: var(--bg-blue); color: white; cursor: pointer;">
+            <div>
+              <div style="font-weight: 800; font-size: 1rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); margin-bottom: 1rem;">STUDENT</div>
+              <h2 style="color: white;">OWN & PRESENT</h2>
+              <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem;">Access and present your verified academic credentials from your digital wallet. Cryptographically secure.</p>
+              <div style="font-weight: 600; color: white;">VIEW CREDENTIALS →</div>
+            </div>
+            <div class="gateway-visual" style="background: transparent;">
+               <div class="layered-composition">
+                  <div class="widget-cred">
+                    <div style="font-weight: 800; font-size: 0.7rem; color: black; margin-bottom: 1rem;">EDUCHAIN CREDENTIAL</div>
+                    <div style="font-weight: 700; font-size: 1.2rem; color: black;">JOHN DOE</div>
+                    <div style="color: #666; font-size: 0.8rem; margin-bottom: 1rem;">B.Sc. CS</div>
+                    <div style="color: var(--success); font-weight: 700; font-size: 0.75rem;">✓ VERIFIED</div>
+                  </div>
+                  <div class="widget-qr">
+                    <div style="width: 40px; height: 40px; background: black; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; padding: 4px;">
+                      <div style="background: white;"></div><div style="background: white;"></div>
+                      <div style="background: white;"></div><div style="background: transparent;"></div>
+                    </div>
+                  </div>
+                  <div class="widget-proof">
+                    <div style="font-size: 0.6rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; color: #8b949e;">BLOCKCHAIN PROOF</div>
+                    <div style="font-size: 0.75rem; margin-bottom: 0.25rem;">✓ HASH VERIFIED</div>
+                    <div style="font-size: 0.75rem; margin-bottom: 0.25rem;">✓ CONTRACT FOUND</div>
+                    <div style="font-size: 0.75rem;">CHAIN 31337</div>
+                  </div>
+                  <div class="widget-wallet">WALLET</div>
+                  <div class="widget-hash mono">0x8A91...4C2E</div>
+               </div>
+            </div>
+          </div>
+
+          <!-- VERIFIER -->
+          <div class="gateway-panel cursor-pointer" id="enter-verifier" style="background: white; border: 1px solid rgba(0,0,0,0.1); cursor: pointer;">
+            <div>
+              <div style="font-weight: 800; font-size: 1rem; letter-spacing: 0.1em; color: var(--accent-violet); margin-bottom: 1rem;">VERIFIER</div>
+              <h2 style="color: black;">VERIFY & TRUST</h2>
+              <p style="color: var(--text-secondary-light); margin-bottom: 2rem;">Verify credential authenticity directly against the blockchain. No middlemen. Absolute cryptographic truth.</p>
+              <div style="font-weight: 600; color: black;">VERIFY CREDENTIAL →</div>
+            </div>
+            <div class="gateway-visual" style="background: #f8fafc; border: 1px solid rgba(0,0,0,0.05);">
+               <div style="text-align: center;">
+                 <div class="mono" style="color: var(--text-secondary-light); margin-bottom: 1rem;">0x8a91...4c2e</div>
+                 <div style="font-size: 2rem; color: #cbd5e1; margin-bottom: 1rem;">↓</div>
+                 <div style="background: var(--success); color: black; font-weight: 800; padding: 0.5rem 1rem; border-radius: 99px; display: inline-block;">✓ VERIFIED</div>
+               </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 4. MERKLE SECTION (INTERACTIVE V3.1) -->
+      <section class="landing-section" style="background: var(--bg-dark-surface);">
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <h2 style="font-size: clamp(2.5rem, 5vw, 4rem);">ONE ROOT.<br>THOUSANDS OF PROOFS.</h2>
+          <p style="max-width: 600px; margin: 1rem auto; color: var(--text-secondary-dark);">
+            Individual batch records are represented by a single Merkle Root registered on-chain, while individual credentials can be verified locally using cryptographic proofs. Mass issuance without massive gas fees.
+          </p>
+          <div style="display: inline-block; padding: 0.25rem 0.75rem; border: 1px solid var(--accent-blue); color: var(--accent-blue); font-size: 0.75rem; letter-spacing: 0.1em; border-radius: 4px; font-weight: 600; margin-top: 1rem;">INTERACTIVE CRYPTOGRAPHIC DEMO</div>
+        </div>
+        
+        <div class="merkle-interactive-container">
+          <!-- Left: Visual SVG + DOM Tree -->
+          <div class="merkle-canvas" id="merkle-tree-canvas">
+             <!-- Javascript will populate this with SVG lines and DOM nodes -->
+          </div>
+          
+          <!-- Right: Proof Inspector -->
+          <div class="merkle-proof-panel" id="merkle-proof-panel">
+            <h4 style="font-size: 0.85rem; letter-spacing: 0.1em; color: var(--text-secondary-dark); text-transform: uppercase; margin-bottom: 2rem; font-weight: 700;">PROOF INSPECTOR</h4>
+            
+            <div id="proof-empty-state" style="color: var(--text-secondary-dark); text-align: center; margin-top: 4rem;">
+               <div style="font-size: 2rem; margin-bottom: 1rem;">👆</div>
+               Select a credential leaf node to view its cryptographic proof path.
+            </div>
+
+            <div id="proof-active-state" class="hidden">
+              <div style="margin-bottom: 2rem;">
+                <div style="font-size: 0.7rem; color: var(--text-secondary-dark); text-transform: uppercase; margin-bottom: 0.25rem;">Selected Credential</div>
+                <div id="demo-selected-id" style="font-weight: 700; font-size: 1.25rem; color: white;">...</div>
+              </div>
+
+              <div style="border-left: 2px solid var(--border-dark); padding-left: 1rem; margin-left: 0.5rem; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+                 
+                 <div>
+                   <div style="font-size: 0.7rem; color: var(--accent-blue); font-weight: 700;">LEAF HASH</div>
+                   <div id="demo-leaf-hash" class="mono" style="font-size: 0.8rem; word-break: break-all; color: var(--text-secondary-dark);">...</div>
+                 </div>
+
+                 <div>
+                   <div style="font-size: 0.7rem; color: var(--accent-violet); font-weight: 700;">COMPUTED PROOF PATH</div>
+                   <div id="demo-proof-hashes" class="mono" style="font-size: 0.75rem; color: var(--text-secondary-dark); margin-top: 0.5rem;">
+                      <!-- JS populates -->
+                   </div>
+                 </div>
+
+                 <div>
+                   <div style="font-size: 0.7rem; color: var(--success); font-weight: 700;">MERKLE ROOT</div>
+                   <div id="demo-root-hash" class="mono" style="font-size: 0.8rem; word-break: break-all; color: white;">...</div>
+                 </div>
+              </div>
+
+              <div style="background: rgba(0, 229, 155, 0.1); border: 1px solid var(--success); padding: 1rem; border-radius: 8px; text-align: center;">
+                 <div style="color: var(--success); font-weight: 800; letter-spacing: 0.05em; font-size: 1.1rem; margin-bottom: 0.5rem;">✓ PROOF VALID</div>
+                 <div style="font-size: 0.75rem; color: rgba(255,255,255,0.7);">Root matches cryptographic computation.</div>
+              </div>
+
+              <div style="text-align: center; margin-top: 2rem; font-size: 0.8rem; color: var(--text-secondary-dark);">
+                MERKLE ROOT → SMART CONTRACT → <span style="color: white; font-weight: 600;">ON-CHAIN</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==============================================
+         VIEW: ADMIN CONSOLE
+    =============================================== -->
+    <main id="view-admin" class="admin-layout hidden fade-in">
+      
+      <!-- Admin Sidebar -->
+      <aside class="admin-sidebar">
+        <div style="font-weight: 800; font-size: 0.8rem; letter-spacing: 0.1em; color: var(--text-secondary-dark); margin-bottom: 2rem; padding-left: 1rem;">ISSUANCE CONSOLE</div>
+        <nav class="admin-nav">
+          <button id="nav-overview" class="active">Overview</button>
+          <button id="nav-issue">Issue Credential</button>
+          <button id="nav-batch">Batch Issue</button>
+          <button id="nav-revoke">Revoke</button>
+        </nav>
+      </aside>
+
+      <!-- Admin Content -->
+      <section class="admin-content">
+        
+        <!-- SEC: OVERVIEW -->
+        <div id="sec-overview" class="view-section active">
+          <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Console Overview</h2>
+
+          <div class="stats-bar">
+            <div class="stat-box">
+              <h4>Network</h4>
+              <p>Localhost (31337)</p>
+            </div>
+            <div class="stat-box">
+              <h4>Contract</h4>
+              <p class="mono" style="font-size: 1rem; margin-top: 5px;">0x5Fb...aa3</p>
+            </div>
+            <div class="stat-box">
+              <h4>Wallet Role</h4>
+              <p id="overview-wallet-role" class="mono" style="font-size: 1rem; margin-top: 5px;">Awaiting Connection...</p>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+            <div style="background: var(--bg-dark-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-dark);">
+              <h3 style="margin-bottom: 1rem;">Issue Credential</h3>
+              <p style="font-size: 0.9rem; margin-bottom: 2rem;">Create a new academic credential.</p>
+              <button id="qa-issue" class="btn-outline">Issue →</button>
+            </div>
+            <div style="background: var(--bg-dark-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-dark);">
+              <h3 style="margin-bottom: 1rem;">Batch Issue</h3>
+              <p style="font-size: 0.9rem; margin-bottom: 2rem;">Generate a Merkle-backed credential batch.</p>
+              <button id="qa-batch" class="btn-outline">Create Batch →</button>
+            </div>
+            <div style="background: var(--bg-dark-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-dark);">
+              <h3 style="margin-bottom: 1rem;">Revoke</h3>
+              <p style="font-size: 0.9rem; margin-bottom: 2rem;">Invalidate an existing credential.</p>
+              <button id="qa-revoke" class="btn-outline" style="border-color: var(--danger); color: var(--danger);">Revoke →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEC: ISSUE -->
+        <div id="sec-issue" class="view-section hidden">
+          <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Issue Certificate</h2>
+
+          <div class="issue-split">
+            <!-- Form Side -->
+            <div>
+              <form id="issue-form">
+                <div class="form-group">
+                  <label>Certificate ID</label>
+                  <input type="text" id="cert-id" required placeholder="CERT-2026-001" class="mono">
+                </div>
+                <div class="form-group">
+                  <label>Student Name</label>
+                  <input type="text" id="student-name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                  <label>Course</label>
+                  <input type="text" id="course-name" required placeholder="B.Sc. Computer Science">
+                </div>
+                <div class="form-group">
+                  <label>Institution</label>
+                  <input type="text" id="institution-name" required placeholder="EduChain University">
+                </div>
+
+                <button type="submit" class="btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1.25rem;">Issue to Blockchain</button>
+              </form>
+              <div id="issue-status" class="tx-log"></div>
+            </div>
+
+            <!-- Preview Side (LIVE CREDENTIAL) -->
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <div style="font-size: 0.8rem; letter-spacing: 0.1em; color: var(--text-secondary-dark); margin-bottom: 2rem; font-weight: 700;">LIVE CREDENTIAL PREVIEW</div>
+              
+              <div class="premium-credential" style="max-width: 100%; transform: none; margin-bottom: 3rem; position: relative;">
+                <div class="cred-brand-header">
+                  <h4>EDUCHAIN</h4>
+                  <span>Verified Academic Credential</span>
+                </div>
+                <div class="cred-body">
+                  <h1 id="preview-name" style="font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; font-weight: 700;">Student Name</h1>
+                  <p id="preview-course" style="font-size: 1.1rem; color: #333; font-weight: 500;">Degree / Course</p>
+                  <p id="preview-inst" style="font-size: 1rem; color: #666; margin-top: 0.25rem;">Institution Name</p>
+                </div>
+                <div class="cred-footer">
+                  <div id="preview-id" class="cred-id">CERT-2026-XXX</div>
+                  <div class="cred-verified-badge" style="background: #e2e8f0; color: #64748b;">DRAFT</div>
+                </div>
+              </div>
+
+              <div style="width: 100%; background: var(--bg-dark-surface); border: 1px solid var(--border-dark); padding: 2rem; border-radius: 12px;">
+                <div style="font-size: 0.75rem; letter-spacing: 0.05em; color: var(--text-secondary-dark); margin-bottom: 0.5rem; text-transform: uppercase; font-weight: 700;">CRYPTOGRAPHIC HASH</div>
+                <div id="preview-hash" class="mono" style="font-size: 1rem; color: white; word-break: break-all; margin-bottom: 1.5rem;">Awaiting input...</div>
+                
+                <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem;">
+                  <div>
+                    <div style="font-size: 0.7rem; color: var(--text-secondary-dark); text-transform: uppercase;">Network</div>
+                    <div class="mono" style="font-size: 0.9rem;">Localhost (31337)</div>
+                  </div>
+                  <div>
+                    <div style="font-size: 0.7rem; color: var(--text-secondary-dark); text-transform: uppercase;">Contract</div>
+                    <div class="mono" style="font-size: 0.9rem;">0x5Fb...aA3</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- SEC: BATCH ISSUE -->
+        <div id="sec-batch" class="view-section hidden">
+          <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Batch Issue (Merkle)</h2>
+          
+          <div style="max-width: 600px;">
+            <div style="background: rgba(16,82,255,0.05); border: 1px solid rgba(16,82,255,0.2); padding: 2rem; border-radius: 12px; margin-bottom: 3rem;">
+              <h4 style="color: var(--accent-blue); margin-bottom: 1rem;">Architecture Overview</h4>
+              <p style="font-size: 0.9rem; color: var(--text-secondary-dark);">Instead of writing 100 certificates directly to the chain, you upload a CSV. The system builds a Merkle Tree, and we only register the 32-byte <strong>Merkle Root</strong> on-chain. This provides cryptographic proof for all 100 credentials in a single transaction.</p>
+            </div>
+
+            <form id="batch-form">
+              <div style="border: 2px dashed var(--border-dark); padding: 4rem 2rem; text-align: center; border-radius: 12px; position: relative; margin-bottom: 2rem; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-dark-surface)'" onmouseout="this.style.background='transparent'">
+                <input type="file" id="csv-file" accept=".csv" required style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
+                <h3 id="csv-file-label" style="margin-bottom: 0.5rem;">Click to upload CSV</h3>
+                <p style="font-size: 0.85rem;">Format: ID, Name, Course, Institution</p>
+              </div>
+              <button type="submit" class="btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1.25rem;">Register Merkle Root</button>
+            </form>
+            <div id="batch-status" class="tx-log"></div>
+          </div>
+        </div>
+
+        <!-- SEC: REVOKE -->
+        <div id="sec-revoke" class="view-section hidden">
+          <h2 style="font-size: 2.5rem; margin-bottom: 3rem;">Revoke Credential</h2>
+
+          <div style="max-width: 600px;">
+            <div style="background: rgba(255,74,74,0.05); border: 1px solid rgba(255,74,74,0.2); padding: 2rem; border-radius: 12px; margin-bottom: 3rem;">
+              <h4 style="color: var(--danger); margin-bottom: 1rem;">DANGER ZONE</h4>
+              <p style="font-size: 0.9rem; color: var(--text-secondary-dark);">Revoking changes the credential's validity state on the blockchain permanently. Verifiers will see the cryptographic hash matches, but the contract will reject it as revoked.</p>
+            </div>
+
+            <form id="revoke-form">
+              <div class="form-group">
+                <label>Certificate ID</label>
+                <input type="text" id="revoke-id" required placeholder="CERT-2026-001" class="mono">
+              </div>
+              <button type="submit" class="btn-primary" style="background: var(--danger); width: 100%; font-size: 1.1rem; padding: 1.25rem;">Revoke Certificate</button>
+            </form>
+            <div id="revoke-status" class="tx-log"></div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- ==============================================
+         VIEW: STUDENT WALLET
+    =============================================== -->
+    <main id="view-student" class="focus-layout hidden fade-in" style="background: #ffffff; color: #000000;">
+      
+      <div class="focus-hero" style="margin-top: 4rem;">
+        <h2 style="color: black; font-size: clamp(2.5rem, 4vw, 4rem);">DIGITAL ACADEMIC CREDENTIAL</h2>
+        <p style="color: #666;">Access your verifiable credential directly from the blockchain.</p>
+      </div>
+
+      <div class="focus-form" id="student-search-box">
+        <form id="student-form">
+          <input type="text" id="student-cert-id" required placeholder="CERT-2026-001" style="background: transparent; border-bottom-color: rgba(0,0,0,0.2); color: black;">
+          <button type="button" id="fetch-cert-btn" class="btn-primary" style="width: 100%; margin-top: 2rem; padding: 1.5rem; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(16,82,255,0.2);">Retrieve from Blockchain</button>
+        </form>
+        <div id="student-status" class="tx-log" style="text-align: center; background: #f8fafc; color: black;"></div>
+      </div>
+
+      <!-- Credential Display -->
+      <div id="cert-display" class="hidden display-card-wrapper">
+        <button id="btn-student-back" style="background: transparent; border: none; font-size: 1rem; color: #666; margin-bottom: 3rem; font-weight: 600;">← Back to Retrieval</button>
+        
+        <div class="premium-credential" style="max-width: 100%; transform: none; box-shadow: 0 30px 60px rgba(0,0,0,0.1); margin-bottom: 4rem;">
+          <div class="cred-brand-header">
+            <h4>EDUCHAIN</h4>
+            <span>Verified Academic Credential</span>
+          </div>
+          <div class="cred-body">
+            <h1 id="display-name" style="font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; font-weight: 700;">...</h1>
+            <p id="display-course" style="font-size: 1.25rem; color: #333; font-weight: 500;">...</p>
+            <p id="display-inst" style="font-size: 1.1rem; color: #666; margin-top: 0.25rem;">...</p>
+          </div>
+          <div class="cred-footer">
+            <div id="display-id" class="cred-id" style="font-size: 1rem;">...</div>
+            <div style="text-align: right;">
+              <div style="font-size: 0.75rem; color: #666; text-transform: uppercase; margin-bottom: 0.25rem;">Issued</div>
+              <div id="display-date" style="font-weight: 600; font-size: 0.9rem;">...</div>
+            </div>
+          </div>
+          <div style="position: absolute; top: 3rem; right: 3rem;">
+             <div class="cred-verified-badge" style="padding: 0.5rem 1rem; font-size: 0.85rem;">✓ VERIFIED</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 200px; gap: 4rem; align-items: start;">
+          <div>
+            <h4 style="font-size: 0.85rem; letter-spacing: 0.1em; color: #666; text-transform: uppercase; margin-bottom: 2rem; font-weight: 700;">BLOCKCHAIN PROOF</h4>
+            <div style="border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem; margin-bottom: 1rem;">
+              <div style="font-size: 0.75rem; color: #666; text-transform: uppercase; margin-bottom: 0.25rem;">Network</div>
+              <div style="font-weight: 600;">Localhost (31337)</div>
+            </div>
+            <div style="border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem; margin-bottom: 1rem;">
+              <div style="font-size: 0.75rem; color: #666; text-transform: uppercase; margin-bottom: 0.25rem;">Contract</div>
+              <div class="mono" style="font-weight: 600;">0x5FbDB2315678afecb367f032d93F642f64180aa3</div>
+            </div>
+          </div>
+          <div style="text-align: right;">
+             <div style="font-size: 0.75rem; color: #666; text-transform: uppercase; margin-bottom: 1rem; font-weight: 700;">VERIFICATION QR</div>
+             <canvas id="qrcode" style="width: 100%; max-width: 150px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ==============================================
+         VIEW: VERIFIER PORTAL
+    =============================================== -->
+    <main id="view-verifier" class="focus-layout hidden fade-in" style="background: var(--bg-dark);">
+      
+      <div class="focus-hero" style="margin-top: 4rem; margin-bottom: 2rem;">
+        <h2 style="font-size: clamp(2.5rem, 4vw, 4rem);">VERIFY A CREDENTIAL</h2>
+        <p>Confirm authenticity directly against the blockchain.</p>
+      </div>
+
+      <div class="segmented-control">
+        <button id="seg-single" class="active">Single</button>
+        <button id="seg-batch">Batch Merkle</button>
+        <button id="seg-auto">Auto JSON</button>
+      </div>
+
+      <!-- Single Verify -->
+      <div class="focus-form" id="verify-sec-single">
+        <form id="verify-form">
+          <input type="text" id="verify-id" required placeholder="Certificate ID" class="mono">
+          <input type="text" id="verify-hash" required placeholder="0x..." class="mono">
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 2rem; padding: 1.5rem; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(16,82,255,0.2);">Verify Cryptographic Proof</button>
+        </form>
+        <div id="verify-result" class="tx-log" style="text-align: center; border: 1px solid rgba(255,255,255,0.1);"></div>
+      </div>
+
+      <!-- Batch Verify -->
+      <div class="focus-form hidden" id="verify-sec-batch">
+        <form id="verify-batch-form">
+          <input type="text" id="batch-verify-id" required placeholder="Batch ID" class="mono">
+          <input type="text" id="batch-verify-hash" required placeholder="Leaf Hash" class="mono">
+          <input type="text" id="batch-verify-proof" required placeholder='Proof Array ["0x..."]' class="mono">
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 2rem; padding: 1.5rem; font-size: 1.1rem;">Verify Merkle Proof</button>
+        </form>
+        <div id="verify-batch-result" class="tx-log" style="text-align: center; border: 1px solid rgba(255,255,255,0.1);"></div>
+      </div>
+
+      <!-- Auto Verify -->
+      <div class="focus-form hidden" id="verify-sec-auto">
+        <div style="border: 2px dashed var(--border-dark); padding: 4rem 2rem; text-align: center; border-radius: 12px; position: relative; margin-bottom: 2rem; transition: background 0.2s;" onmouseover="this.style.background='var(--bg-dark-surface)'" onmouseout="this.style.background='transparent'">
+          <input type="file" id="verify-json-file" accept=".json" style="position: absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
+          <h3 id="verify-json-label" style="margin-bottom: 0.5rem; font-size: 1.25rem;">Upload Proofs JSON</h3>
+        </div>
+        <input type="text" id="verify-json-id" placeholder="Certificate ID" class="mono">
+        <button type="button" id="btn-auto-verify" class="btn-primary" style="width: 100%; margin-top: 2rem; padding: 1.5rem; font-size: 1.1rem;">Auto Verify</button>
+        <div id="verify-auto-result" class="tx-log" style="text-align: center; border: 1px solid rgba(255,255,255,0.1);"></div>
+      </div>
+
+      <!-- Verifier Spectacular Success State -->
+      <div id="verifier-success-state" class="hidden display-card-wrapper fade-in" style="margin-top: -2rem;">
+        <button id="btn-verifier-back" style="background: transparent; border: none; font-size: 1rem; color: #8b949e; margin-bottom: 2rem; font-weight: 600;">← Verify Another</button>
+        
+        <div class="verifier-success-banner">
+          <div class="check-circle">✓</div>
+          <h2 style="color: var(--success); font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: 0.05em;">VERIFIED</h2>
+          <div style="font-weight: 700; letter-spacing: 0.1em; color: white;">AUTHENTIC ACADEMIC CREDENTIAL</div>
+        </div>
+
+        <div class="premium-credential" style="max-width: 100%; transform: none; margin-bottom: 3rem; background: #fff; color: #000;">
+          <div class="cred-brand-header">
+            <h4>EDUCHAIN</h4>
+            <span>Verified Academic Credential</span>
+          </div>
+          <div class="cred-body">
+            <h1 id="verify-display-name" style="font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: -0.02em; font-weight: 700;">...</h1>
+            <p id="verify-display-course" style="font-size: 1.25rem; color: #333; font-weight: 500;">...</p>
+            <p id="verify-display-inst" style="font-size: 1.1rem; color: #666; margin-top: 0.25rem;">...</p>
+          </div>
+          <div class="cred-footer">
+            <div id="verify-display-id" class="cred-id">...</div>
+          </div>
+        </div>
+
+        <div class="proof-panel">
+          <h4 style="font-size: 0.85rem; letter-spacing: 0.1em; color: #8b949e; text-transform: uppercase; margin-bottom: 2rem; font-weight: 700;">BLOCKCHAIN PROOF</h4>
+          <div class="proof-row">
+            <span style="color: #8b949e;">Certificate Hash</span>
+            <span id="verify-display-hash" class="mono" style="color: white; word-break: break-all; max-width: 60%;">...</span>
+          </div>
+          <div class="proof-row">
+            <span style="color: #8b949e;">Contract</span>
+            <span class="mono" style="color: white;">0x5FbDB2315678afecb367f032d93F642f64180aa3</span>
+          </div>
+          <div class="proof-row">
+            <span style="color: #8b949e;">Network</span>
+            <span style="color: white; font-weight: 600;">Localhost</span>
+          </div>
+          <div class="proof-row">
+            <span style="color: #8b949e;">Chain ID</span>
+            <span class="mono" style="color: white;">31337</span>
+          </div>
+          <div class="proof-row">
+            <span style="color: #8b949e;">Status</span>
+            <span style="color: var(--success); font-weight: 800;">VERIFIED ON-CHAIN</span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
